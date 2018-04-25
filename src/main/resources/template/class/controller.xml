@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+       <name>Model</name>
+       <filePath>src/main/java/${packageName}/${moduleName}/controller</filePath>
+       <fileName>${ClassName}Controller.java</fileName>
+       <content><![CDATA[
+/** 
+ * Copyright ® 2016-${currentYear} zeal  zhangleifor@163.com.
+ * All right reserved. 
+ */
+package ${packageName}.${moduleName}.controller;
+
+
+import com.zeal.zealsay.common.entity.Result;
+import ${packageName}.${moduleName}.entity.${ClassName};
+import ${packageName}.${moduleName}.service.${ClassName}Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * ${functionName}Rest服务接口
+ *
+ * @author ${functionAuthor}
+ * @date ${functionVersion}
+ */
+@RestController
+@RequestMapping(value="${ClassName?uncap_first}")
+public class ${ClassName}Controller {
+
+    @Autowired
+    ${ClassName}Service ${ClassName?uncap_first}Service;
+
+    /**
+     * 通过ID查找对象
+     * @author ${functionAuthor}
+     * @date ${functionVersion}
+     */
+    @RequestMapping(value="/findById/{id}",method = RequestMethod.GET)
+    public Result findById(@PathVariable String id,HttpServletRequest request,
+                                            HttpServletResponse response){
+        try{
+            return new Result(${ClassName?uncap_first}Service.findById(id));
+        }
+        catch(Exception er) {
+        }
+        return null;
+    }
+
+    /**
+     * 通过Class查找对象
+     * @author ${functionAuthor}
+     * @date ${functionVersion}
+     */
+    @RequestMapping(value="/findByClass",method = RequestMethod.POST)
+    public Result findByClass(@RequestBody ${ClassName} ${ClassName?uncap_first},
+                                            HttpServletRequest request,HttpServletResponse response){
+        try{
+            return new Result(${ClassName?uncap_first}Service.findByClass(${ClassName?uncap_first}));
+        }
+        catch(Exception er) {
+        }
+        return null;
+    }
+
+
+
+
+    /**
+     * 新增记录
+     * @author ${functionAuthor}
+     * @date ${functionVersion}
+     */
+    @RequestMapping(value="/insert",method = RequestMethod.POST)
+    public Result insert(@RequestBody ${ClassName} ${ClassName?uncap_first},HttpServletRequest request,
+                       HttpServletResponse response){
+        try{
+              return  new Result(${ClassName?uncap_first}Service.insert(${ClassName?uncap_first}));
+        }
+        catch(Exception er) {
+        }
+        return null;
+    }
+
+    /**
+     * 更新数据
+     * @author ${functionAuthor}
+     * @date ${functionVersion}
+     */
+    @RequestMapping(value="/update",method = RequestMethod.POST)
+    public Result update(@RequestBody ${ClassName} ${ClassName?uncap_first},HttpServletRequest request,
+                       HttpServletResponse response){
+        try{
+            return new Result(${ClassName?uncap_first}Service.update(${ClassName?uncap_first}));
+        }
+        catch(Exception er) {
+        }
+        return null;
+    }
+
+    /**
+     * 通过Class删除信息
+     * @author ${functionAuthor}
+     * @date ${functionVersion}
+     */
+    @RequestMapping(value="/delete",method = RequestMethod.POST)
+    public Result delete(@RequestBody ${ClassName} ${ClassName?uncap_first},HttpServletRequest request,
+                       HttpServletResponse response){
+        try{
+             return new Result(${ClassName?uncap_first}Service.delete(${ClassName?uncap_first}));
+        }
+        catch(Exception er) {
+        }
+        return null;
+
+    }
+
+    /**
+     * 通过ID删除信息
+     * @author ${functionAuthor}
+     * @date ${functionVersion}
+     */
+    @RequestMapping(value="/deleteById/{id}",method = RequestMethod.POST)
+    public Result deleteById(@PathVariable String id,HttpServletRequest request,
+                       HttpServletResponse response){
+        try{
+            return new Result(${ClassName?uncap_first}Service.deleteById(id));
+        }
+        catch(Exception er) {
+        }
+        return null;
+    }
+}]]>
+       </content>
+</template>
